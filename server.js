@@ -18,7 +18,7 @@ var app = express();
 app.use(morgan('dev'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
-
+app.use(express.static(__dirname + '/public'));
 
 
 //Routes
