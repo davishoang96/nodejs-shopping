@@ -10,11 +10,12 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var flash = require('express-flash');
 
-var db_url = "localhost:27017/shopping";
+
+var secret = require('./config/secret');
 var User = require('./models/user');
 
 //Connect to mongodb
-mongoose.connect(db_url,function(err){
+mongoose.connect(secret.database,function(err){
   if (err) throw err;
   console.log('Connected to database');
 });
@@ -41,7 +42,7 @@ app.use(cookieParser());
 app.use(session({
   resave: true,
   saveUninitialized: true,
-  secret: "davis"
+  secret: secret.secretKey
 }));
 
 //Flash warning messages
@@ -54,7 +55,7 @@ app.use(mainRoutes);
 app.use(userRoutes);
 
 
-const PORT = 3000;
+const PORT = secret.port;
 
 app.listen(PORT, function(err){
   if (err) throw err;
