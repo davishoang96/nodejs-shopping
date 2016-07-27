@@ -9,6 +9,9 @@ logs
 *.log
 npm-debug.log*
 
+###MACOSX###
+*.DS_Store
+
 # Runtime data
 pids
 *.pid

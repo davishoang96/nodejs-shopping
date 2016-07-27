@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 
-//This is a blueprint for Mongodb like designing a table for Mysql
+
 var UserSchema = new Schema({
   email: {type: String, unique: true, lowercase: true},
   password: String,
@@ -10,7 +10,7 @@ var UserSchema = new Schema({
   profile: {
     name: {type: String, default: ''},
     avatar: {type: String, default: ''}
-  },
+  }
 
   address: String,
   history: [{
