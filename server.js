@@ -1,5 +1,7 @@
 var express = require('express'),
     mongoose = require('mongoose'),
+    ejs = require('ejs'),
+    engine = require('ejs-mate'),
     morgan = require('morgan');
 
 var db_url = "localhost:27017/shopping";
