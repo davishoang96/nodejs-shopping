@@ -13,15 +13,17 @@ mongoose.connect(db_url,function(err){
 
 var app = express();
 
-//Routes examples
-app.get('/', function(req, res){
-  var name = "davis";
-  res.json("Hello " + name);
-});
 
-app.get('/home', function(req, res){
-  var name = "Stark";
-  res.json("Welcome " + name);
+//Middleware
+app.use(morgan('dev'));
+app.engine('ejs', engine);
+app.set('view engine', 'ejs');
+
+
+
+//Routes
+app.get('/', function(req, res){
+  res.render('home');
 })
 
 const PORT = 8080;
