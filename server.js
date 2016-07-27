@@ -23,7 +23,11 @@ app.set('view engine', 'ejs');
 
 //Routes
 app.get('/', function(req, res){
-  res.render('home');
+  res.render('main/home');
+})
+
+app.get('/about', function(req, res){
+  res.render('main/about');
 })
 
 const PORT = 8080;
