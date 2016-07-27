@@ -1,4 +1,13 @@
-var express = require('express');
+var express = require('express'),
+    mongoose = require('mongoose'),
+    morgan = require('morgan');
+
+var db_url = "localhost:27017/shopping";
+
+mongoose.connect(db_url,function(err){
+  if (err) throw err
+  console.log('Connected to database');
+});
 
 var app = express();
 
