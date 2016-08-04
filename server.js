@@ -5,6 +5,7 @@ var ejs = require('ejs'); //HTML engine
 var engine = require('ejs-mate');
 var bodyParser = require('body-parser');
 var morgan = require('morgan'); //View debug in console
+var mongoStore = require('connect-mongo/es5');
 
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
