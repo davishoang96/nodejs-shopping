@@ -11,3 +11,30 @@ passport.deserializeUser(function(id, done){
     done(err, user);
   });
 });
+
+//Middleware
+passport.use('local-login', new localStrategy{
+  usernameField: 'email',
+  passwordField: 'password',
+  passRegToCallback: true
+}, function(req, email, password, done) {
+  User.findOne({email: email}, function(err, user){
+    if(err) return done(err);
+    if(!user){
+      return done (null, false, req,flash('loginMessage','No user has been found'));
+    }
+
+    if(!user.comparePassword(password){
+      return done(null, false, req.flash('loginMessage', 'Wrong Password!'));
+    }
+    return done(null, user);
+    })
+  })
+});
+
+exports.isAuthenticated = function(req ,res ,next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/login');
+}
