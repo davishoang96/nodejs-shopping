@@ -22,7 +22,6 @@ mongoose.connect(secret.database,function(err){
 
 var app = express();
 
-
 //Middleware
 app.use(morgan('dev'));
 
