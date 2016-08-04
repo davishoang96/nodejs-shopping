@@ -8,7 +8,7 @@ var morgan = require('morgan'); //View debug in console
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var flash = require('express-flash');
-var mongoStore = require('connect-mongo')(session);
+var mongoStore = require('connect-mongo/es5')(session);
 var passport = require('passport');
 
 
@@ -49,6 +49,8 @@ app.use(session({
 
 //Flash warning messages
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session);
 
 //Routes
 var mainRoutes = require('./routes/main');
