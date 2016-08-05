@@ -63,7 +63,7 @@ app.use(mainRoutes);
 app.use(userRoutes);
 
 
-const PORT = secret.port;
+var PORT = secret.port;
 
 app.listen(PORT, function(err){
   if (err) throw err;
