@@ -27,6 +27,10 @@ mongoose.connect(secret.database,function(err){
 var app = express();
 
 //Middleware
+app.use(function(err, req, res, next) {
+  console.log(err);
+});
+
 app.use(morgan('dev'));
 
 //Convert data io json
