@@ -12,7 +12,7 @@ var MongoStore = require('connect-mongo/es5')(session);
 var passport = require('passport');
 
 var cookieParser = require('cookie-parser');
-var flash = require('express-flash');
+var flash = require('connect-flash');
 
 
 var secret = require('./config/secret');
@@ -42,6 +42,7 @@ app.use(express.static(__dirname + '/public'));
 
 //Session
 app.use(cookieParser());
+
 app.use(session({
   resave: true,
   saveUninitialized: true,
@@ -50,7 +51,10 @@ app.use(session({
 }));
 
 //Flash warning messages
+
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Routes
 var mainRoutes = require('./routes/main');
