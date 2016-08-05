@@ -5,9 +5,12 @@ var ejs = require('ejs'); //HTML engine
 var engine = require('ejs-mate');
 var bodyParser = require('body-parser');
 var morgan = require('morgan'); //View debug in console
-var mongoStore = require('connect-mongo/es5');
 
+//Store session on server side
 var session = require('express-session');
+var MongoStore = require('connect-mongo/es5')(session);
+var passport = require('passport');
+
 var cookieParser = require('cookie-parser');
 var flash = require('express-flash');
 
@@ -42,7 +45,8 @@ app.use(cookieParser());
 app.use(session({
   resave: true,
   saveUninitialized: true,
-  secret: secret.secretKey
+  secret: secret.secretKey,
+  store: new MongoStore({url: secret.database, autoReconnect: true})
 }));
 
 //Flash warning messages
